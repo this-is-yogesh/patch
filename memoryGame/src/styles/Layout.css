@@ -1,10 +1,10 @@
 .outer_box {
   width: 500px;
-  height: 500px;
+  height: 300px;
   border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   place-items: center;
 }
 
@@ -13,15 +13,20 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.mini_box {
+.mini_box,
+.hide {
   height: 60px;
   width: 60px;
-  background-color: brown;
   text-align: center;
   border-radius: 10%;
   cursor: pointer;
+  object-fit: cover;
 }
 
-
+.hide {
+  background-color: brown;
+}
