@@ -85,7 +85,7 @@ function Layout({ imagesArray }: LayoutProps) {
             onClick={() => flipImage(index)}
           >
             {!value?.isFlipped ? (
-              <div />
+              <div className="hidden_box"/>
             ) : (
               <img src={value.image} height={"100%"} width={"100%"} />
             )}
