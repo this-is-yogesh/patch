@@ -4,12 +4,12 @@ import { useState } from "react";
 interface LayoutProps {
   imagesArray: string[];
 }
-type Card = {
+interface Card {
   id: number;
   image: string;
   isFlipped: boolean;
   isMatched: boolean;
-};
+}
 function generateShuffleArray(newArray: Card[]): Card[] {
   for (let i = 0; i < newArray.length; i++) {
     let shuffledIndex = Math.floor(Math.random() * newArray.length);
@@ -84,9 +84,7 @@ function Layout({ imagesArray }: LayoutProps) {
             key={value.id}
             onClick={() => flipImage(index)}
           >
-            {!value?.isFlipped ? (
-              <div className="hidden_box"/>
-            ) : (
+            {value?.isFlipped && (
               <img src={value.image} height={"100%"} width={"100%"} />
             )}
           </div>
