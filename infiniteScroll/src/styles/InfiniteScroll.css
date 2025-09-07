@@ -1,0 +1,15 @@
+.item_layout {
+  border: 1px solid black;
+  width: 100%;
+}
+.list_layout {
+  width: 50%;
+  text-align: center;
+  background-color: red;
+  height: 400px; /* fixed height */
+  overflow-y: scroll;
+}
+
+.list_layout > button {
+  cursor: pointer;
+}
