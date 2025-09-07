@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InfiniteScroll from "./components/InfiniteScroll";
+import InfiniteScrollIntersection from "./components/InfiniteScrollIntersection";
 import "./App.css";
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
 
   return (
     <div className="app_layout">
-      <InfiniteScroll />
+      {/* <InfiniteScroll /> */}
+      <InfiniteScrollIntersection />
     </div>
   );
 }
