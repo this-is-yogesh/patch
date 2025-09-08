@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import "./App.css";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
@@ -14,10 +14,17 @@ const Pages: PageProps = {
   Step2: 2,
   Step3: 3,
 };
+
+type componentsProps = {
+  [Pages.Step1]: FC;
+  [Pages.Step2]: FC;
+  [Pages.Step3]: FC;
+};
+
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(Pages.Step1);
 
-  const components = {
+  const components: componentsProps = {
     [Pages.Step1]: Step1,
     [Pages.Step2]: Step2,
     [Pages.Step3]: Step3,
