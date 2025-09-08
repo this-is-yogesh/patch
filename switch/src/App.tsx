@@ -1,17 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Switch from './components'
+import { useState } from "react";
+import "./App.css";
+import Switch from "./components";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOn, setisOn] = useState<boolean>(false);
 
+  function handleToggle(): void {
+    setisOn(!isOn);
+  }
   return (
-    <>
-
-    </>
-  )
+    <div className="main-layout">
+      <Switch on={isOn} toggle={handleToggle} labelName={"switch "} />
+    </div>
+  );
 }
 
-export default App
+export default App;
