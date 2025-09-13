@@ -53,14 +53,6 @@ export default function InfiniteScrollIntersection() {
     }, 1000);
   }
 
-  function handleScroll(event: React.UIEvent<HTMLDivElement>) {
-    let { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-    let reminginScroll: number = Math.floor(
-      scrollHeight - (clientHeight + scrollTop)
-    ) as number;
-    console.log(reminginScroll, "scroll**");
-    if (reminginScroll < THRESHOLD && !loading) loadMore();
-  }
 
   function callBackRef(el: HTMLDivElement | null, index: number) {
     if (el) arrayListRef.current[index] = el;
