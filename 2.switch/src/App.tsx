@@ -10,7 +10,7 @@ function App() {
   }
   return (
     <div className="main-layout">
-      <Switch on={isOn} toggle={handleToggle} labelName={"switch "} />
+      <Switch on={isOn} toggle={handleToggle} labelName={"switch"} />
     </div>
   );
 }
