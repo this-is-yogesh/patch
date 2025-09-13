@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, type ChangeEvent, type FC } from "react";
 import "./App.css";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
@@ -15,39 +15,83 @@ const Pages: PageProps = {
   Step3: 3,
 };
 
-type componentsProps = {
-  [Pages.Step1]: FC;
-  [Pages.Step2]: FC;
-  [Pages.Step3]: FC;
-};
+interface StepProps {
+  inputs: any;
+  onChange: (e: React.ChangeEvent) => void;
+}
 
+type ComponentsMap = {
+  [key: number]: FC<StepProps>;
+};
+type keys = "step1" | "step2" | "step3";
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(Pages.Step1);
-
-  const components: componentsProps = {
+  const [inputs, setInputs] = useState<Record<keys, object>>(() => {
+    return {
+      step1: {
+        firstName: "",
+        lastName: "",
+      },
+      step2: {
+        phone: "",
+        email: "",
+      },
+      step3: {
+        account: "",
+        balance: "",
+      },
+    };
+  });
+  const [show,setShow] = useState(false);
+  const inputProps = inputs[`step${currentStep}` as keys];
+  const components: ComponentsMap = {
     [Pages.Step1]: Step1,
     [Pages.Step2]: Step2,
     [Pages.Step3]: Step3,
   };
-
   const LoadedComponent = components[currentStep];
-
+  function onChange(event: ChangeEvent) {
+    let element = event.target as HTMLInputElement;
+    const value = element.value;
+    const id = element.id;
+    setInputs(prev => ({
+      ...prev,
+      [`step${currentStep}` as keys]: {
+        ...prev[`step${currentStep}` as keys],
+        [id]: value,
+      },
+    }));
+  }
+  let arr = Object.entries(inputs);
   return (
     <div className="app_layout">
       <div className="main_layout">
-        <LoadedComponent />
+        <LoadedComponent inputs={inputProps} onChange={onChange} />
         <div className="button_layout">
           {currentStep > Pages.Step1 && (
             <button onClick={() => setCurrentStep(prev => prev - 1)}>
               Back
             </button>
           )}
-          {currentStep < Pages.Step3 && (
+          {currentStep < Pages.Step3 ? (
             <button onClick={() => setCurrentStep(prev => prev + 1)}>
               Next
             </button>
+          ) : (
+            <button onClick={() => setShow(true)}>Save</button>
           )}
           <button>Cancel</button>
+        </div>
+        <div>
+          {show && (
+            <div>
+              {arr.map(input => (
+                <div>
+                  <label>{input[0]}</label>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
