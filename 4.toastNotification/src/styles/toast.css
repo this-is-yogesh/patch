@@ -1,0 +1,95 @@
+:root {
+  --success: #4caf50;
+  --danger: #f44336;
+  --info: #2196f3;
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --danger-bg: rgba(244, 67, 54, 0.1);
+  --info-bg: rgba(233, 150, 243, 0.1);
+}
+
+.toast-body {
+  width: 400px;
+  text-align: center;
+  position: fixed;
+  padding: 15px 10px;
+  border-radius: 10px;
+  border: 2px solid;
+}
+.toast-body[data-type="info"] {
+  border-color: var(--info);
+  background-color: var(--info-bg);
+}
+
+.toast-body[data-type="danger"] {
+  border-color: var(--danger);
+  background-color: var(--danger-bg);
+}
+.toast-body[data-type="success"] {
+  border-color: var(--success);
+  background-color: var(--success-bg);
+}
+
+.toast-body[data-position="top-right"] {
+  top: 10px;
+  right: 10px;
+}
+
+.toast-body[data-position="top-left"] {
+  top: 10px;
+  left: 10px;
+}
+
+.toast-body[data-position="bottom-left"] {
+  bottom: 10px;
+  left: 10px;
+}
+
+.toast-body[data-position="bottom-right"] {
+  bottom: 10px;
+  right: 10px;
+}
+.cross {
+  position: absolute;
+  right: 3px;
+  top: 2px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+}
+
+.toast-left-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: "center";
+  gap: 30px;
+  width: 95%;
+}
+.toast-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 70%;
+  align-items: center;
+  gap: 20px;
+}
+.title-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  background-color: yellow;
+  height: 4px;
+  width: 99%;
+  left: 2px;
+  right: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

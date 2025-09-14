@@ -1,13 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Toast from "./components/Toast";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
+      <Toast
+        position={"top-right"}
+        type={"danger"}
+        title="message title"
+        desc="message dsc is listed below"
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
