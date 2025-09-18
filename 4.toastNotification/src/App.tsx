@@ -1,16 +1,42 @@
-import { useState } from "react";
+import { useState, useContext, use } from "react";
 import "./App.css";
 import Toast from "./components/Toast";
-
+import { ToastContext } from "./provider/ToastProvider";
+type toastProps = {
+  position: string;
+  type: "success" | "info" | "danger";
+  title: string;
+  desc: string;
+  id?: number;
+};
 function App() {
+  const [showToast, setShoWToast] = useState(false);
+  const context = useContext(ToastContext);
+  if (!context) {
+    throw new Error("useContext must be used within ToastProvider");
+  }
+  const { addNotification } = context;
+
+  function showToastFunction() {
+    let obj: toastProps = {
+      position: "bottom-left",
+      type: "info",
+      title: "message title",
+      desc: "",
+    };
+    addNotification(obj);
+  }
   return (
     <>
-      <Toast
-        position={"top-right"}
-        type={"danger"}
-        title="message title"
-        desc="message dsc is listed below"
-      />
+      <button onClick={showToastFunction}>show toast</button>
+      {/* {showToast && (
+        <Toast
+          position={"top-right"}
+          type={"danger"}
+          title="message title"
+          desc=""
+        />
+      )} */}
     </>
   );
 }
