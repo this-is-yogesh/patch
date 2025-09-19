@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useState } from "react";
 import Toast from "../components/Toast";
+import "../styles/toast.css";
 
 type ContextProps = {
   children: React.ReactNode;
@@ -36,11 +37,20 @@ function ToastProvider({ children }: ContextProps) {
     [sample]
   );
 
-  let component = toasts.map(t => <Toast {...t} key={t.id} />);
+  let component = function toastContainer() {
+    let positionData = toasts?.[0]?.position || "top-right";
+    return (
+      <div data-position={positionData} className="toast-container">
+        {toasts.map(t => (
+          <Toast {...t} key={t.id} />
+        ))}
+      </div>
+    );
+  };
   return (
     <ToastContext.Provider value={{ addNotification }}>
-      {children}
-      <div>{component}</div>
+      <div>{children}</div>
+      <div>{component()}</div>
     </ToastContext.Provider>
   );
 }

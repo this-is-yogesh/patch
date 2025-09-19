@@ -19,7 +19,7 @@ function App() {
 
   function showToastFunction() {
     let obj: toastProps = {
-      position: "bottom-left",
+      position: "top-right",
       type: "info",
       title: "message title",
       desc: "",

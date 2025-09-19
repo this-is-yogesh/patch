@@ -9,11 +9,23 @@
 
 .toast-body {
   width: 400px;
-  text-align: center;
-  position: fixed;
+  text-align: left;
+  position: relative;
   padding: 15px 10px;
   border-radius: 10px;
   border: 2px solid;
+  transform: translateX(0); /* this is by default*/
+  transition: transform 0.4s ease;
+  @starting-style {
+    transform: translateX(100%);
+  }
+}
+
+.toast-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .toast-body[data-type="info"] {
   border-color: var(--info);
@@ -29,22 +41,22 @@
   background-color: var(--success-bg);
 }
 
-.toast-body[data-position="top-right"] {
+.toast-container[data-position="top-right"] {
   top: 10px;
   right: 10px;
 }
 
-.toast-body[data-position="top-left"] {
+.toast-container[data-position="top-left"] {
   top: 10px;
   left: 10px;
 }
 
-.toast-body[data-position="bottom-left"] {
+.toast-container[data-position="bottom-left"] {
   bottom: 10px;
   left: 10px;
 }
 
-.toast-body[data-position="bottom-right"] {
+.toast-container[data-position="bottom-right"] {
   bottom: 10px;
   right: 10px;
 }
