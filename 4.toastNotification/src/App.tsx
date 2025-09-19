@@ -2,6 +2,7 @@ import { useState, useContext, use } from "react";
 import "./App.css";
 import Toast from "./components/Toast";
 import { ToastContext } from "./provider/ToastProvider";
+import toastObj from "./services/ToastService";
 type toastProps = {
   position: string;
   type: "success" | "info" | "danger";
@@ -24,7 +25,8 @@ function App() {
       title: "message title",
       desc: "",
     };
-    addNotification(obj);
+    toastObj._startNotification(obj);
+    //addNotification(obj);
   }
   return (
     <>

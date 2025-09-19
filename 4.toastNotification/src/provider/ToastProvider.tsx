@@ -1,6 +1,7 @@
-import React, { createContext, useCallback, useState } from "react";
+import React, { createContext, useCallback, useState, useEffect } from "react";
 import Toast from "../components/Toast";
 import "../styles/toast.css";
+import toastObj from "../services/ToastService";
 
 type ContextProps = {
   children: React.ReactNode;
@@ -27,13 +28,14 @@ function ToastProvider({ children }: ContextProps) {
   const [toasts, setToasts] = useState<toastProps[]>([]);
   const [sample, setSample] = useState<boolean>(false);
 
+  useEffect(() => {
+    toastObj._registerNotification(addNotification);
+  }, []);
   const addNotification = useCallback(
     (obj: toastProps) => {
       let id = new Date().getTime();
-      console.log("render**");
       setToasts(prev => {
         let a = [{ ...obj, id }, ...prev];
-        console.log(a, "a**");
         return a;
       });
     },
