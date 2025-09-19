@@ -6,8 +6,8 @@ import ToastProvider from "./provider/ToastProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ToastProvider>
+    {/* <ToastProvider> */}
       <App />
-    </ToastProvider>
+    {/* </ToastProvider> */}
   </StrictMode>
 );

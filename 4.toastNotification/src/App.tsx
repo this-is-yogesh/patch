@@ -3,6 +3,7 @@ import "./App.css";
 import Toast from "./components/Toast";
 import { ToastContext } from "./provider/ToastProvider";
 import toastObj from "./services/ToastService";
+import ToastProvider from "./provider/ToastProvider.tsx";
 type toastProps = {
   position: string;
   type: "success" | "info" | "danger";
@@ -21,15 +22,18 @@ function App() {
   function showToastFunction() {
     let obj: toastProps = {
       position: "top-right",
-      type: "info",
-      title: "message title",
+      type: "success",
+      title: "You have a notification",
       desc: "",
     };
-    toastObj._startNotification(obj);
-    //addNotification(obj);
+   // toastObj._startNotification(obj);
+    addNotification(obj);
   }
   return (
     <>
+      <ToastProvider>
+        <></>
+      </ToastProvider>
       <button onClick={showToastFunction}>show toast</button>
       {/* {showToast && (
         <Toast

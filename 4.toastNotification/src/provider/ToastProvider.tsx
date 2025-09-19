@@ -4,7 +4,7 @@ import "../styles/toast.css";
 import toastObj from "../services/ToastService";
 
 type ContextProps = {
-  children: React.ReactNode;
+  children: React.ReactNode ;
 };
 type NotificationKeys = "success" | "info" | "danger";
 type toastProps = {
@@ -26,21 +26,18 @@ export const ToastContext = createContext<ToastContextType | undefined>(
 
 function ToastProvider({ children }: ContextProps) {
   const [toasts, setToasts] = useState<toastProps[]>([]);
-  const [sample, setSample] = useState<boolean>(false);
 
   useEffect(() => {
     toastObj._registerNotification(addNotification);
   }, []);
-  const addNotification = useCallback(
-    (obj: toastProps) => {
-      let id = new Date().getTime();
-      setToasts(prev => {
-        let a = [{ ...obj, id }, ...prev];
-        return a;
-      });
-    },
-    [sample]
-  );
+
+  const addNotification = useCallback((obj: toastProps) => {
+    let id = new Date().getTime();
+    setToasts(prev => {
+      let a = [{ ...obj, id }, ...prev];
+      return a;
+    });
+  }, []);
 
   let component = function toastContainer() {
     let positionData = toasts?.[0]?.position || "top-right";
