@@ -12,9 +12,12 @@ type toastProps = {
   title: string;
   desc: string;
   id?: number;
+  exiting?: boolean;
 };
 type ToastContextType = {
   addNotification: (args: toastProps) => void;
+  onUpdate: (id: number) => void;
+  onRemove: (id: number) => void;
 };
 export const ToastContext = createContext<ToastContextType | undefined>(
   undefined
@@ -47,8 +50,31 @@ function ToastProvider({ children }: ContextProps) {
       </div>
     );
   };
+
+  function onUpdate(id: number) {
+    setToasts(prev => {
+      return prev.map(toast => {
+        if (toast.id === id) {
+          return { ...toast, exiting: true };
+        } else {
+          return { ...toast, exiting: false };
+        }
+      });
+    });
+  }
+  function onRemove(id: number) {
+    setToasts(prev => {
+      return prev.filter(toast => {
+        if (toast.id === id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+    });
+  }
   return (
-    <ToastContext.Provider value={{ addNotification }}>
+    <ToastContext.Provider value={{ addNotification, onUpdate, onRemove }}>
       <div>{children}</div>
       <div>{component()}</div>
     </ToastContext.Provider>
