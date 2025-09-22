@@ -3,5 +3,6 @@ export interface dataType {
   name: string;
   type: "folder" | "file";
   children: dataType[];
-  expanded?:boolean
+  expanded?: boolean;
+  addMore?: boolean;
 }

@@ -11,3 +11,9 @@
 .main-comp {
   margin-left: 10px;
 }
+
+.add__item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
