@@ -6,4 +6,9 @@ export type toastProps = {
   desc: string;
   id?: number;
   exiting?: boolean;
+  progress?: number;
+  duration?: number;
+  preventProgress?: boolean;
+  // handleMouseOver?: (id: number) => void;
+  // handleMouseOut?: (id: number) => void;
 };

@@ -19,6 +19,7 @@
   @starting-style {
     transform: translateX(100%);
   }
+  cursor: pointer;
 }
 
 .exiting-toast {
@@ -26,7 +27,7 @@
 }
 
 @keyframes exitingAnimation {
-  from{
+  from {
     transform: translateX(0);
   }
   to {
@@ -117,4 +118,5 @@
   right: 0;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  transition: width 0.5s ease;
 }

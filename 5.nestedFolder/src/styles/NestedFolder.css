@@ -1,0 +1,13 @@
+.tree {
+  cursor: pointer;
+}
+.tree-item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  gap: 5px;
+}
+
+.main-comp {
+  margin-left: 10px;
+}

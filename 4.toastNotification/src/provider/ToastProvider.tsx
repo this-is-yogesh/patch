@@ -2,23 +2,18 @@ import React, { createContext, useCallback, useState, useEffect } from "react";
 import Toast from "../components/Toast";
 import "../styles/toast.css";
 import toastObj from "../services/ToastService";
+import type { toastProps } from "../types/ToastProps";
 
 type ContextProps = {
-  children: React.ReactNode ;
+  children: React.ReactNode;
 };
-type NotificationKeys = "success" | "info" | "danger";
-type toastProps = {
-  position: string;
-  type: NotificationKeys;
-  title: string;
-  desc: string;
-  id?: number;
-  exiting?: boolean;
-};
+
 type ToastContextType = {
   addNotification: (args: toastProps) => void;
   onUpdate: (id: number) => void;
   onRemove: (id: number) => void;
+  handleMouseOver: (id: number) => void;
+  handleMouseOut: (id: number) => void;
 };
 export const ToastContext = createContext<ToastContextType | undefined>(
   undefined
@@ -29,6 +24,29 @@ function ToastProvider({ children }: ContextProps) {
 
   useEffect(() => {
     toastObj._registerNotification(addNotification);
+  }, []);
+
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      setToasts(prev => {
+        return prev
+          .map(toast => {
+            let currentProgress = toast?.progress;
+            let totalDuration = toast?.duration;
+            let currentProgressState = toast?.preventProgress;
+            if (currentProgress && totalDuration && !currentProgressState) {
+              let part = totalDuration / currentProgress;
+              let percentage = 100 / part;
+              toast.progress = currentProgress - percentage;
+            }
+            return toast;
+          })
+          .filter(toast => toast.progress && toast.progress > 4);
+      });
+    }, 200);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   const addNotification = useCallback((obj: toastProps) => {
@@ -72,8 +90,37 @@ function ToastProvider({ children }: ContextProps) {
       });
     });
   }
+  function handleMouseOver(id: number) {
+    setToasts(prev => {
+      return prev.map(toast => {
+        if (toast.id === id) {
+          toast.preventProgress = true;
+        }
+        console.log(toast, "toast**");
+        return toast;
+      });
+    });
+  }
+  function handleMouseOut(id: number) {
+    setToasts(prev => {
+      return prev.map(toast => {
+        if (toast.id === id) {
+          toast.preventProgress = false;
+        }
+        return toast;
+      });
+    });
+  }
   return (
-    <ToastContext.Provider value={{ addNotification, onUpdate, onRemove }}>
+    <ToastContext.Provider
+      value={{
+        addNotification,
+        onUpdate,
+        onRemove,
+        handleMouseOut,
+        handleMouseOver,
+      }}
+    >
       <div>{children}</div>
       <div>{component()}</div>
     </ToastContext.Provider>

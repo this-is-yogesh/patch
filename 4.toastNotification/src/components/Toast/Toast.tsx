@@ -4,17 +4,9 @@ import info from "../../../public/info.png";
 import success from "../../../public/success.png";
 import { useContext } from "react";
 import { ToastContext } from "../../provider/ToastProvider";
+import type { toastProps } from "../../types/ToastProps";
 
 type NotificationKeys = "success" | "info" | "danger";
-type toastProps = {
-  position: string;
-  type: NotificationKeys;
-  title: string;
-  desc: string;
-  id?: number;
-  exiting?: boolean;
-  //onUpdate: (id: number) => void;
-};
 
 const NotificationType: Record<NotificationKeys, string> = {
   success: success,
@@ -28,10 +20,11 @@ export default function Toast({
   desc,
   id,
   exiting,
+  progress,
 }: toastProps) {
   let obj = useContext(ToastContext);
   if (!obj) throw new Error("Object not found");
-  const { onUpdate, onRemove } = obj;
+  const { onUpdate, onRemove, handleMouseOver, handleMouseOut } = obj;
   function updateToastCB() {
     if (id) {
       onUpdate(id);
@@ -47,12 +40,26 @@ export default function Toast({
       onRemove(id);
     }
   }
+
+  function pauseProgress() {
+    if (id && handleMouseOver) {
+      handleMouseOver(id);
+    }
+  }
+  function resumeProgress() {
+    if (id && handleMouseOut) {
+      handleMouseOut(id);
+    }
+  }
+  console.log('provider*')
   return (
     <div
       className={className}
       onAnimationEnd={handleAnimationEnd}
       data-position={position}
       data-type={type}
+      onMouseOver={pauseProgress}
+      onMouseOut={resumeProgress}
     >
       <button className="cross" onClick={updateToastCB}>
         &times;
@@ -67,7 +74,7 @@ export default function Toast({
         </div>
         {/* <button className="toast-right"></button> */}
       </div>
-      <span className="progress-bar" />
+      <span style={{ width: `${progress}%` }} className="progress-bar" />
     </div>
   );
 }

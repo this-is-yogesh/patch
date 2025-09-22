@@ -4,20 +4,15 @@ import Toast from "./components/Toast";
 import { ToastContext } from "./provider/ToastProvider";
 import toastObj from "./services/ToastService";
 import ToastProvider from "./provider/ToastProvider.tsx";
-type toastProps = {
-  position: string;
-  type: "success" | "info" | "danger";
-  title: string;
-  desc: string;
-  id?: number;
-};
+import type { toastProps } from "./types/ToastProps.ts";
+
 function App() {
   const [showToast, setShoWToast] = useState(false);
-  const context = useContext(ToastContext);
-  if (!context) {
-    throw new Error("useContext must be used within ToastProvider");
-  }
-  const { addNotification } = context;
+  // const context = useContext(ToastContext);
+  // if (!context) {
+  //   throw new Error("useContext must be used within ToastProvider");
+  // }
+  // const { addNotification } = context;
 
   function showToastFunction() {
     let obj: toastProps = {
@@ -25,9 +20,11 @@ function App() {
       type: "success",
       title: "You have a notification",
       desc: "",
+      progress: 100,
+      duration: 5000,
     };
-   // toastObj._startNotification(obj);
-    addNotification(obj);
+    toastObj._startNotification(obj);
+    //addNotification(obj);
   }
   return (
     <>
