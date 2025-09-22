@@ -58,7 +58,6 @@ function Tree({
   return <FolderMapping />;
 }
 
-
 export default function NestedFolder({
   folderData,
 }: {
@@ -70,7 +69,7 @@ export default function NestedFolder({
   });
 
   function handleExpand(event: React.MouseEvent, id: number) {
-    event.stopPropagation();
+    event.stopPropagation()
     setLinearObj(prev => {
       const copy = { ...prev };
       copy[id] = { ...copy[id], expanded: !copy[id].expanded };
