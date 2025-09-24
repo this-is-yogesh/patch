@@ -1,0 +1,38 @@
+.carousel {
+  width: 50vw;
+  height: 50vh;
+  min-width: 200px;
+  display: flex;
+  background-color: blue;
+}
+
+.box {
+  /* margin-left: 40px;
+  margin-top: 40px; */
+  position: relative;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+.box > img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 200px;
+  left: 0;
+  top: 0;
+  border-radius: 6px;
+  position: absolute;
+}
+
+.box > img[data-active="true"] {
+  opacity: 1;
+  background-color: red;
+}
+
+.box > img[data-active="false"] {
+  opacity: 0;
+  background-color: blue;
+}
