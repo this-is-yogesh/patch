@@ -3,18 +3,31 @@
   height: 50vh;
   min-width: 200px;
   display: flex;
-  background-color: blue;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .box {
   /* margin-left: 40px;
   margin-top: 40px; */
   position: relative;
-  background-color: red;
   height: 100%;
   width: 100%;
 }
+.button__class {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
 
+}
+
+.button__class > button{
+  width: 50px;
+  height: 50px; 
+  background-color: blanchedalmond;
+}
 .box > img {
   object-fit: cover;
   height: 100%;
@@ -25,6 +38,7 @@
   top: 0;
   border-radius: 6px;
   position: absolute;
+  transition: opacity 0.4s linear;
 }
 
 .box > img[data-active="true"] {
