@@ -21,7 +21,7 @@ export default function Carousel({ children }: ChildrenProps) {
         });
         return newIndex;
       });
-    }, 2000);
+    }, 4000);
     intervalRef.current = intervalId;
     return intervalId;
   }
@@ -55,16 +55,77 @@ export default function Carousel({ children }: ChildrenProps) {
 
     startSlide();
   }
+
+  function handlePrevious() {
+    const { slidesArray } = getSlides();
+    clearInterval(intervalRef.current);
+    if (!slidesArray?.length) {
+      return;
+    }
+    setCurrentIndex(prev => {
+      let newIndex = prev === 0 ? slidesArray?.length - 1 : prev - 1;
+      [...slidesArray].forEach((slide, index) => {
+        slide.setAttribute("data-active", (index === newIndex).toString());
+      });
+      return newIndex;
+    });
+
+    startSlide();
+  }
+
+  function handleStepper(e: React.MouseEvent, id: number) {
+    clearInterval(intervalRef.current);
+    let { slidesArray } = getSlides();
+    setCurrentIndex(id);
+    if (!slidesArray?.length) return;
+    [...slidesArray].forEach((ele, index) => {
+      ele.setAttribute("data-active", (index === id).toString());
+    });
+    startSlide();
+  }
+  function handleMouseEnter() {
+    clearInterval(intervalRef.current);
+    const childrenRefElement = childrenRef.current;
+    if (!childrenRefElement) return;
+   childrenRefElement.classList.add("mouseenter-class");
+    childrenRefElement?.setAttribute("mouseenter", "true");
+  }
+  function handleMouseLeave() {
+    startSlide();
+    const childrenRefElement = childrenRef.current;
+    if (!childrenRefElement) return;
+    childrenRefElement.classList.remove("mouseenter-class");
+  }
+
   return (
     <>
-      {currentIndex}
       <div className="carousel">
-        <div className="box" ref={childrenRef}>
+        <div
+          className="box"
+          ref={childrenRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {children}
         </div>
         <div className="button__class">
-          <button>＜</button>
-          <button onClick={handleNext}>＞</button>
+          <button onClick={handlePrevious} id="prev">
+            ＜
+          </button>
+          <button onClick={handleNext} id="next">
+            ＞
+          </button>
+        </div>
+        <div className="stepper__class">
+          {Array.from(children, (_, index) => (
+            <button
+              onClick={e => handleStepper(e, index)}
+              key={index}
+              current-button={(currentIndex === index).toString()}
+            >
+              {index + 1}
+            </button>
+          ))}
         </div>
       </div>
     </>

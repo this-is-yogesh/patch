@@ -14,19 +14,37 @@
   height: 100%;
   width: 100%;
 }
+.box[mouseenter="true"] {
+  cursor: pointer;
+}
+.mouseenter-class {
+border: 10px solid red;
+}
 .button__class {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
-
+  bottom: 0;
 }
 
-.button__class > button{
+#prev,
+#next {
   width: 50px;
-  height: 50px; 
+  height: 50px;
   background-color: blanchedalmond;
+  position: absolute;
+}
+
+#prev {
+  top: 50%;
+  left: 23.5%;
+}
+
+#next {
+  top: 50%;
+  right: 23.5%;
 }
 .box > img {
   object-fit: cover;
@@ -49,4 +67,33 @@
 .box > img[data-active="false"] {
   opacity: 0;
   background-color: blue;
+}
+.stepper__class {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+}
+
+.stepper__class > button {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: rgb(81, 79, 79);
+  color: white;
+}
+
+.stepper__class > button:focus {
+  outline: none;
+}
+.stepper__class > button[current-button="true"] {
+  outline: 2px solid rgb(226, 212, 12);
 }
