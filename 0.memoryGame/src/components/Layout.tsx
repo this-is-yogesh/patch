@@ -1,6 +1,7 @@
 import "../styles/Layout.css";
 import { useState } from "react";
 
+//techinal design layout - https://app.eraser.io/workspace/LQZJ7ImnUPdZqE3WmbnI
 interface LayoutProps {
   imagesArray: string[];
 }
