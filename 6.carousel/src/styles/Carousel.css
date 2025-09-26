@@ -8,17 +8,16 @@
 }
 
 .box {
-  /* margin-left: 40px;
-  margin-top: 40px; */
   position: relative;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 .box[mouseenter="true"] {
   cursor: pointer;
 }
 .mouseenter-class {
-border: 10px solid red;
+  border: 1px solid red;
 }
 .button__class {
   display: flex;
@@ -57,6 +56,7 @@ border: 10px solid red;
   border-radius: 6px;
   position: absolute;
   transition: opacity 0.4s linear;
+  
 }
 
 .box > img[data-active="true"] {
@@ -96,4 +96,31 @@ border: 10px solid red;
 }
 .stepper__class > button[current-button="true"] {
   outline: 2px solid rgb(226, 212, 12);
+}
+.show {
+  animation: showAnimation 0.5s ease-in forwards;
+  opacity: 1;
+}
+
+.hide {
+  animation: hideAnimation 0.5s ease-in forwards;
+  opacity: 1;
+}
+
+@keyframes showAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes hideAnimation {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }

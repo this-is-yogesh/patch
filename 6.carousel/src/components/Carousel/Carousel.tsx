@@ -16,9 +16,15 @@ export default function Carousel({ children }: ChildrenProps) {
       setCurrentIndex(prev => {
         if (!slidesArray?.length) return 99;
         let newIndex = prev === slidesArray?.length - 1 ? 0 : prev + 1;
-        [...slidesArray].forEach((slide, index) => {
-          slide.setAttribute("data-active", (index === newIndex).toString());
-        });
+
+        slidesArray[prev].classList.remove("show");
+        slidesArray[prev].classList.add("hide");
+
+        slidesArray[newIndex].classList.remove("hide");
+        slidesArray[newIndex].classList.add("show");
+        // [...slidesArray].forEach((slide, index) => {
+        //   slide.setAttribute("data-active", (index === newIndex).toString());
+        // });
         return newIndex;
       });
     }, 4000);
@@ -87,7 +93,7 @@ export default function Carousel({ children }: ChildrenProps) {
     clearInterval(intervalRef.current);
     const childrenRefElement = childrenRef.current;
     if (!childrenRefElement) return;
-   childrenRefElement.classList.add("mouseenter-class");
+    childrenRefElement.classList.add("mouseenter-class");
     childrenRefElement?.setAttribute("mouseenter", "true");
   }
   function handleMouseLeave() {
