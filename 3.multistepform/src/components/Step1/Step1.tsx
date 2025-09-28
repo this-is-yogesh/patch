@@ -2,7 +2,7 @@ type propsType = {
   inputs: { firstName: ""; lastName: "" };
   onChange: (e: React.ChangeEvent) => void;
 };
-export default function Step1({ inputs, onChange }: propsType) {
+const Step1: React.FC<propsType> = ({ inputs, onChange }) => {
   const { firstName, lastName } = inputs;
   return (
     <fieldset>
@@ -19,8 +19,15 @@ export default function Step1({ inputs, onChange }: propsType) {
       <div style={{ height: "20px" }} />
       <div className="inputlabel">
         <label htmlFor={"lastName"}>LastName :</label>
-        <input type="text" id={"lastName"} value={lastName} onChange={onChange} />
+        <input
+          type="text"
+          id={"lastName"}
+          value={lastName}
+          onChange={onChange}
+        />
       </div>
     </fieldset>
   );
-}
+};
+
+export default Step1;

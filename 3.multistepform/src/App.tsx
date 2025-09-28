@@ -4,11 +4,11 @@ import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 
-interface PageProps {
+type PageProps = {
   Step1: number;
   Step2: number;
   Step3: number;
-}
+};
 const Pages: PageProps = {
   Step1: 1,
   Step2: 2,
@@ -20,9 +20,6 @@ interface StepProps {
   onChange: (e: React.ChangeEvent) => void;
 }
 
-type ComponentsMap = {
-  [key: number]: FC<StepProps>;
-};
 type keys = "step1" | "step2" | "step3";
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(Pages.Step1);
@@ -42,9 +39,9 @@ function App() {
       },
     };
   });
-  const [show,setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const inputProps = inputs[`step${currentStep}` as keys];
-  const components: ComponentsMap = {
+  const components: Record<number, FC<StepProps>> = {
     [Pages.Step1]: Step1,
     [Pages.Step2]: Step2,
     [Pages.Step3]: Step3,
