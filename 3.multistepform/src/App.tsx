@@ -15,12 +15,12 @@ const Pages: PageProps = {
   Step3: 3,
 };
 
+type keys = "step1" | "step2" | "step3";
 interface StepProps {
   inputs: any;
   onChange: (e: React.ChangeEvent) => void;
 }
 
-type keys = "step1" | "step2" | "step3";
 function App() {
   const [currentStep, setCurrentStep] = useState<number>(Pages.Step1);
   const [inputs, setInputs] = useState<Record<keys, object>>(() => {

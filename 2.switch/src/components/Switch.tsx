@@ -10,7 +10,7 @@ export default function Switch({ on, toggle, labelName }: switchProps) {
   console.log(on, toggle);
   return (
     <div className="switch">
-      <label>
+      <div className="switch_input">
         <input
           type="checkbox"
           checked={on}
@@ -19,9 +19,9 @@ export default function Switch({ on, toggle, labelName }: switchProps) {
           aria-checked={on}
           aria-label={labelName}
         />
-        <span className="slider"></span>
+        <span className="slider" />
         <span>{labelName}</span>
-      </label>
+      </div>
     </div>
   );
 }

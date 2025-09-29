@@ -8,15 +8,19 @@
   width: 110px;
 }
 
+.switch_input {
+  height: 100px;
+}
+
 .switch > label {
   cursor: pointer;
 }
 
 .switch .slider {
-  position: absolute;
-  background-color: #ccc;
-  top: 0;
-  left: 0;
+  /* position: absolute; */
+  background-color: red;
+  /* top: 0;
+  left: 0; */
   width: 60px;
   height: 100%;
   border-radius: 20px;
