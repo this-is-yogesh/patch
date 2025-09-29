@@ -1,0 +1,23 @@
+.item_layout {
+  height: 400px;
+  overflow-y: scroll;
+  text-align: center;
+  width: 50%;
+  border: 2px solid red;
+  margin: 0 auto;
+}
+
+[main-attribute="yes"] {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.item {
+  border: 1px solid black;
+}
+
+.item:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
