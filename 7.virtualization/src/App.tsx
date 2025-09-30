@@ -4,12 +4,17 @@ import List from "./components";
 
 function App() {
   const [listarray, setListArray] = useState<any[]>(() => {
-    return new Array(1000);
+    return new Array(10000).fill(1);
   });
 
   return (
     <div main-attribute={"yes"} className="main_layout">
-      <List listarray={listarray} />
+      <List
+        listarray={listarray}
+        renderRow={idx => {
+          return idx;
+        }}
+      />
     </div>
   );
 }
