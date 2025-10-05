@@ -1,0 +1,26 @@
+[main-attribute="yes"] {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.item_layout {
+  overflow-y: scroll;
+  text-align: center;
+  width: 50%;
+  border: 1px solid red;
+  margin: 0 auto;
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  border: 1px solid black;
+  width: 100%;
+  background-color: gainsboro;
+}
+
+.item:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
