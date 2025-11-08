@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import { createQueryOptions, createMutationQueries } from "./QueryOptions";
 import TodoCard from "./components/TodoCard";
 
 export default function Demo() {
   const [title, setTitle] = useState<string>("");
 
-  const {
-    data: todos,
-    isFetching,
-    error,
-    refetch,
-  } = useQuery(createQueryOptions(title));
+  const [{ data: todos, isFetching, error, refetch }] = useQueries({
+    queries: [createQueryOptions(title)],
+  });
   if (error) {
     console.log("Something wrong", error);
   }
