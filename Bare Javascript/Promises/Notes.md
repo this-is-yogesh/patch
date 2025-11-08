@@ -72,3 +72,55 @@ parking(carParking)
 parking is HOF as it is taking another function as arg
 carParking is callback as it is being passed as an arg to another fun
 ---***-----
+
+4️⃣.
+---***-----
+There are two phases to promises, 
+creation phase and consumption phase
+
+creation phase:
+let p1 = new Promise(callbackFunction)
+function callbackFunction(resolve,reject){
+  resolve("resolved message")
+}
+
+consumption phase:
+p1.then(function(data){console.log(data)})
+
+
+the biggest advantage of promise is inversion of control which simply means better control over completion of asyn task, we will exactly be able to know when the async task is completed and then do the operation after the async task 
+
+Callbacks give control away.
+There’s unpredictability in how the function we gave our callback to will handle it — it might call it late, call it multiple times, or NEVER CALL IT AT ALL.
+
+Promises give control back.
+We know exactly when our code will run after the async task completes and what to do with it — because the JavaScript engine guarantees that the .then() (or await) handler will run once, in order, and after the Promise settles.
+That’s the “inversion of control” benefit.
+---***-----
+
+5️⃣.
+---***-----
+
+How is resolve and reject injected in promise
+
+class myPromise {
+  constructor(callBack) {
+    callBack(this.#resolve, this.#reject);
+  }
+  #resolve() {} -> private methods
+  #reject() {} -> private methods
+  then() {}
+  catch() {}
+  finally() {}
+}
+
+function callBack(resolve, reject) {
+
+}
+let obj = new myPromise(callBack);
+console.log(obj,'obj**')
+
+
+
+
+---***-----
