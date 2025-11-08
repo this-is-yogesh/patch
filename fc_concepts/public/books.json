@@ -1,0 +1,28 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Little Prince",
+      "author": "Antoine de Saint-Exupéry",
+      "lang": "en",
+      "cover": "/4.toastNotification/public/alert.png",
+      "price": 9.99
+    },
+    {
+      "id": 2,
+      "title": "Cien años de soledad",
+      "author": "Gabriel García Márquez",
+      "lang": "es",
+      "cover": "/fc_concepts/public/image.jpg",
+      "price": 12.5
+    },
+    {
+      "id": 3,
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "lang": "en",
+      "cover": "/fc_concepts/public/image.jpg",
+      "price": 15.0
+    }
+  ]
+}

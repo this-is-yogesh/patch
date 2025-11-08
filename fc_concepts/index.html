@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bookverse</title>
+    <!-- Critical CSS: small inline styles for the initial view to speed up First Paint -->
+    <style>
+      /* Critical CSS for header and first-screen skeleton */
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+        font-family: Inter, system-ui, Arial;
+      }
+      .app-shell {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      header {
+        background: #0f172a;
+        color: white;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        font-weight: 700;
+      }
+      .main {
+        flex: 1;
+        padding: 16px;
+      }
+    </style>
+    <!-- Defer heavy stylesheets (the rest of app CSS is loaded from JS bundles) -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

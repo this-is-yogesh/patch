@@ -24,9 +24,6 @@ function ToastProvider({ children }: ContextProps) {
 
   useEffect(() => {
     toastObj._registerNotification(addNotification);
-  }, []);
-
-  useEffect(() => {
     let intervalId = setInterval(() => {
       setToasts(prev => {
         return prev
@@ -111,16 +108,17 @@ function ToastProvider({ children }: ContextProps) {
       });
     });
   }
+
+  const valueObj: ToastContextType = {
+    addNotification: addNotification,
+    onUpdate: onUpdate,
+    onRemove: onRemove,
+    handleMouseOut: handleMouseOut,
+    handleMouseOver: handleMouseOver,
+  };
+
   return (
-    <ToastContext.Provider
-      value={{
-        addNotification,
-        onUpdate,
-        onRemove,
-        handleMouseOut,
-        handleMouseOver,
-      }}
-    >
+    <ToastContext.Provider value={valueObj}>
       <div>{children}</div>
       <div>{component()}</div>
     </ToastContext.Provider>
