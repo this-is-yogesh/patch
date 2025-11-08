@@ -31,14 +31,22 @@ class myPromise {
 
 let obj = new myPromise(callBack);
 obj.then(thenCallBack);
+obj.then(thenCallBack2);
+obj.then(thenCallBack3);
 
 function callBack(resolve, reject) {
   setTimeout(() => {
     resolve("Custom Promise is resolved");
   }, 3000);
   //or
-  resolve("Custom Promise is resolved 2");
+  //resolve("Custom Promise is resolved 2");
 }
 function thenCallBack(data) {
   console.log("Thencallback data->", data);
+}
+function thenCallBack2(data) {
+  console.log("Thencallback data 2->", data);
+}
+function thenCallBack3(data) {
+  console.log("Thencallback data 3->", data);
 }
