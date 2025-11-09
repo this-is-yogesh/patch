@@ -13,8 +13,12 @@ undefined
 
 7️⃣. The correct behaviour of then ,catch and finally
 
-finally can only return reject not resovle to then or finally, then can have one more arg as catch function where it works as catch, if the error is caught there , it will not move down to original catch
+1.finally can only return reject not resovle to then or finally, 
+
+2.then can have one more arg as catch function where it works as catch, if the error is caught there , it will not move down to original catch
 what will be output
+
+3.then which has catch, so it works like this -> if then is resolving then whatever we return from that then it will go down but if the catch (the arg catch) is catching then whatever we return from that catch, that will go down
 ---***-----
 example : 
 function callBack(resolve, reject) {

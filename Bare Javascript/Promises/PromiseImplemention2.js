@@ -11,7 +11,7 @@ obj
   .then(
     data => {
       console.log("data2", data);
-      return Promise.resolve(5);
+      return Promise.reject(41)
     },
     e => {
       console.log("errorThen", e);
@@ -29,3 +29,8 @@ obj
   .finally(final => console.log("final3", final))
   .then(data => console.log("then3", data))
   .catch(error => console.log("error3", error));
+
+
+
+
+  
