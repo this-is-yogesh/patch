@@ -120,7 +120,17 @@ function callBack(resolve, reject) {
 let obj = new myPromise(callBack);
 console.log(obj,'obj**')
 
+---***-----
 
+6️⃣
+---***-----
 
+then block always returns a resolved promise
+p1.then(
+(data)=> return 2 // then internally it does 
+return Promise.resolve(2)
+if nothing returned then it just does Promise.resolve() which is basically
+undefined
+)
 
 ---***-----
