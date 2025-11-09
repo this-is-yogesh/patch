@@ -1,5 +1,3 @@
-// have 4 api calls run one after the other
-
 function callApiFunction(data, time, rejectPromise) {
   return new Promise((res, rej) => {
     setTimeout(() => {
@@ -27,15 +25,15 @@ class myPromise {
     return new Promise((resolve, reject) => {
       const ansArray = new Array(arrayOfPromies.length);
       let count = 0;
-      arrayOfPromies.forEach((promise, i) => {
-        promise.then(data => {
-          ansArray[i] = data;
+      for (let i = 0; i < arrayOfPromies.length; i++) {
+        arrayOfPromies[i].then(data => {
+          ansArray[i] = data; //preserves the order
           count++;
           if (count === arrayOfPromies.length) {
             resolve(ansArray);
           }
         });
-      });
+      }
     });
   }
 }
