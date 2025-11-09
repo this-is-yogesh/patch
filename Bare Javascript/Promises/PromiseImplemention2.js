@@ -22,6 +22,10 @@ obj
   .finally(final => console.log("final1", final))
   .then(data => {
     console.log("lasthen", data);
-    return 3
   })
-  .finally(final => console.log("final2", final));
+  .finally(final => {
+    return Promise.resolve(4);
+  })
+  .finally(final => console.log("final3", final))
+  .then(data => console.log("then3", data))
+  .catch(error => console.log("error3", error));
