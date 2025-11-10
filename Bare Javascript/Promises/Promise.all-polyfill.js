@@ -26,13 +26,17 @@ class myPromise {
       const ansArray = new Array(arrayOfPromies.length);
       let count = 0;
       for (let i = 0; i < arrayOfPromies.length; i++) {
-        arrayOfPromies[i].then(data => {
-          ansArray[i] = data; //preserves the order
-          count++;
-          if (count === arrayOfPromies.length) {
-            resolve(ansArray);
-          }
-        });
+        arrayOfPromies[i]
+          .then(data => {
+            ansArray[i] = data; //preserves the order
+            console.log(ansArray);
+            count++;
+            if (count === arrayOfPromies.length) {
+              resolve(ansArray);
+            } else {
+            }
+          })
+          .catch(err => reject(err));
       }
     });
   }
@@ -42,4 +46,4 @@ let promise = new myPromise();
 promise
   .all(arrOfPromises)
   .then(data => console.log(data, "polyfillData"))
-  .catch(err => console.log("Promise.all error", err));
+  .catch(err => console.log("Promise.all error any", err));
