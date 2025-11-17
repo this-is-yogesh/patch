@@ -1,5 +1,27 @@
-function Playingeleven() {
-  return <div>playing eleven</div>;
-}
+import React from "react";
+type masterProps = {
+  members: masterTeam[];
+};
 
-export default Playingeleven;
+const MasterTeam: React.FC<masterProps> = ({ members }) => {
+  const MasterTeamComp = function () {
+    return (
+      <div>
+        {members.map(player => {
+          return (
+            <div>
+              <span>{player.memberName}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+  return (
+    <div>
+      <h5>Playing Eleven</h5>
+      <MasterTeamComp />
+    </div>
+  );
+};
+export default MasterTeam;

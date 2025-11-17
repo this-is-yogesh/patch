@@ -1,9 +1,11 @@
 import React from "react";
 type masterProps = {
   masterPlayers: masterTeam[];
+  add: (id: number) => void;
+  del: (id: number) => void;
 };
 
-const MasterTeam: React.FC<masterProps> = ({ masterPlayers }) => {
+const MasterTeam: React.FC<masterProps> = ({ masterPlayers, del, add }) => {
   const MasterTeamComp = function () {
     return (
       <div>
@@ -11,6 +13,8 @@ const MasterTeam: React.FC<masterProps> = ({ masterPlayers }) => {
           return (
             <div>
               <span>{player.memberName}</span>
+              <button onClick={() => add(player.id)}>add</button>
+              <button onClick={() => del(player.id)}>delete</button>
             </div>
           );
         })}

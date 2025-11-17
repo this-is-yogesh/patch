@@ -6,6 +6,7 @@ import MasterTeam from "./components/MasterTeam";
 function App() {
   const [textMember, setTextMember] = useState("");
   const [masterTeam, setMasterTeam] = useState<masterTeam[]>([]);
+  const [playingEleven, setPlayingEleven] = useState<masterTeam[]>([]);
   const textInputRef = useRef<HTMLInputElement | null>(null);
   /**
    *
@@ -26,6 +27,32 @@ function App() {
     setTextMember("");
     textInputRef.current?.focus();
   }
+  function addPlayer(id: number) {
+    if (playingEleven?.length) {
+      const selectedPlayer = playingEleven.find(p => p.id === id);
+      if (selectedPlayer) return;
+    }
+    const currentMembers = [...playingEleven];
+    const selectedPlayer = masterTeam.find(p => p.id === id);
+    if (selectedPlayer) {
+      currentMembers.push({
+        id: selectedPlayer.id,
+        memberName: selectedPlayer.memberName,
+        playing: true,
+      });
+    }
+    setPlayingEleven(currentMembers);
+  }
+
+  function deletePlayer(id: number) {
+    // if (playingEleven?.length) {
+    //   const selectedPlayer = playingEleven.find(p => p.id === id);
+    //   if (selectedPlayer) return;
+    // }
+    const currentMembers = [...playingEleven];
+    const filteredPlayers = currentMembers.filter(p => p.id !== id);
+    setPlayingEleven(filteredPlayers);
+  }
   return (
     <div>
       <div className="app_input">
@@ -38,8 +65,12 @@ function App() {
           <button type="submit">Add member</button>
         </form>
       </div>
-      <Playingeleven />
-      <MasterTeam masterPlayers={masterTeam} />
+      <MasterTeam
+        masterPlayers={masterTeam}
+        add={addPlayer}
+        del={deletePlayer}
+      />
+      <Playingeleven members={playingEleven} />
     </div>
   );
 }
