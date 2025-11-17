@@ -10,48 +10,34 @@ function App() {
   const textInputRef = useRef<HTMLInputElement | null>(null);
   /**
    *
-   * lets keep the text field yahi par, aise i will move the data to first component and then use callback also yahi par and i will move the data to second component
+   * lets keep the text field here, aise i will move the data to first component and then use callback also here and i will move the data to second component
    *
    * so both the component will receive data as well get the data from one single parent file rather than having multiple files
    */
 
   function addMasterMember(e?: React.FormEvent<HTMLFormElement>) {
     if (e) e.preventDefault();
-    let presentMembers = [...masterTeam];
-    presentMembers.push({
-      id: masterTeam.length + 1,
-      memberName: textMember,
-      playing: false,
+    setMasterTeam(prev => {
+      return [
+        ...prev,
+        { id: prev.length + 1, memberName: textMember, playing: false },
+      ];
     });
-    setMasterTeam(presentMembers);
     setTextMember("");
     textInputRef.current?.focus();
   }
   function addPlayer(id: number) {
-    if (playingEleven?.length) {
-      const selectedPlayer = playingEleven.find(p => p.id === id);
-      if (selectedPlayer) return;
-    }
-    const currentMembers = [...playingEleven];
     const selectedPlayer = masterTeam.find(p => p.id === id);
-    if (selectedPlayer) {
-      currentMembers.push({
-        id: selectedPlayer.id,
-        memberName: selectedPlayer.memberName,
-        playing: true,
-      });
-    }
-    setPlayingEleven(currentMembers);
+    setPlayingEleven(prev => {
+      const currentPlayer = prev.find(p => p.id === id);
+      if (currentPlayer) return prev;
+      if (!selectedPlayer) return prev;
+      return (prev = [...prev, { ...selectedPlayer, playing: true }]);
+    });
   }
 
   function deletePlayer(id: number) {
-    // if (playingEleven?.length) {
-    //   const selectedPlayer = playingEleven.find(p => p.id === id);
-    //   if (selectedPlayer) return;
-    // }
-    const currentMembers = [...playingEleven];
-    const filteredPlayers = currentMembers.filter(p => p.id !== id);
-    setPlayingEleven(filteredPlayers);
+    setPlayingEleven(prev => prev.filter(p => p.id !== id));
   }
   return (
     <div>

@@ -4,7 +4,10 @@
 typescript issues :
 
 1. i was not able to use formeventhandler correctly with form to prevent its default behaviour
-ans - e: React.FormEvent<HTMLFormElement>
+ans - code
+  function addMasterMember(e?: React.FormEvent<HTMLFormElement>) {
+    if (e) e.preventDefault(); }
+    
 and also Inside a <form>, a <button> defaults to type="submit" so no need to add same function to button
 
 
