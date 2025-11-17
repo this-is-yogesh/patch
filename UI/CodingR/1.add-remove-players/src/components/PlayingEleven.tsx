@@ -6,15 +6,15 @@ type masterProps = {
 const MasterTeam: React.FC<masterProps> = ({ members }) => {
   const MasterTeamComp = function () {
     return (
-      <div>
+      <ul style={{ margin: 0, padding: 10 }}>
         {members.map(player => {
           return (
-            <div>
+            <li>
               <span>{player.memberName}</span>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
   };
   return (

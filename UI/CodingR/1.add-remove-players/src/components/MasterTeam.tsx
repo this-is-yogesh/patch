@@ -8,17 +8,17 @@ type masterProps = {
 const MasterTeam: React.FC<masterProps> = ({ masterPlayers, del, add }) => {
   const MasterTeamComp = function () {
     return (
-      <div>
+      <ul style={{ margin: 0, padding: 10 }}>
         {masterPlayers.map(player => {
           return (
-            <div>
+            <li>
               <span>{player.memberName}</span>
               <button onClick={() => add(player.id)}>add</button>
               <button onClick={() => del(player.id)}>delete</button>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
   };
   return (

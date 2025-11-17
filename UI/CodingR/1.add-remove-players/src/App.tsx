@@ -32,7 +32,7 @@ function App() {
       const currentPlayer = prev.find(p => p.id === id);
       if (currentPlayer) return prev;
       if (!selectedPlayer) return prev;
-      return (prev = [...prev, { ...selectedPlayer, playing: true }]);
+      return [...prev, { ...selectedPlayer, playing: true }];
     });
   }
 

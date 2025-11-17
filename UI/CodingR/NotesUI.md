@@ -29,3 +29,17 @@ we have to use null not undefined
 
   }
   but not recommended because React may in the future rerun these updater functions multiple times, especially in Strict Mode → causing multiple unwanted updates or focus calls.
+
+  4. i wasnt able to recall to use li 
+  ans - use ul / ol on top and then li tag
+      return (
+      <ul style={{ margin: 0, padding: 10 }}>
+        {masterPlayers.map(player => {
+          return (
+            <li>
+              <span>{player.memberName}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
