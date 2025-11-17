@@ -27,8 +27,8 @@ function App() {
     textInputRef.current?.focus();
   }
   function addPlayer(id: number) {
-    const selectedPlayer = masterTeam.find(p => p.id === id);
     setPlayingEleven(prev => {
+      const selectedPlayer = masterTeam.find(p => p.id === id);
       const currentPlayer = prev.find(p => p.id === id);
       if (currentPlayer) return prev;
       if (!selectedPlayer) return prev;
