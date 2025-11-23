@@ -34,11 +34,11 @@ const proxy2 = new Proxy(book, {
     return target[key];
   },
   set(target, key, value) {
-    console.log(`Someone changed ${key} to ${value}`);
+    console.log(`Someone changed ${target[key]} to ${value}`);
     target[key] = value;
     return true;
   }
 });
 
 proxy2.title;          // Someone accessed title
-proxy2.title = "New";  // Someone changed title to New
+proxy2.title = "New Guide";  // Someone changed JS Guide to New Guide

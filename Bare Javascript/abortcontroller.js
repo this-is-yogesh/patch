@@ -6,18 +6,22 @@ const controller = new AbortController();
 
 function apiMethod() {
   fetch("https://jsonplaceholder.typicode.com/todos", {
+    method: "GET",
     signal: controller.signal,
+    headers: {
+      "Content-Type": "application/json",
+    }
   })
     .then(res => res.json())
     .then(data => console.log(data.slice(0, 3)))
-    .catch(err => console.log("Cancelled:", err.name));
+    .catch(err => console.log("Cancelled:", err));
 }
 
 function cancelApi() {
   controller.abort(); // 🔥 cancel the request
 }
 function callApi() {
-  setTimeout(apiMethod, 2000);
+  setTimeout(apiMethod, 1000);
   setTimeout(cancelApi,5000)
 }
 
