@@ -24,3 +24,17 @@ return children
 15.will memoized component with React.memo re-render if it is receiving a children prop
 
 17.what is flush sync and how does it help us 
+
+21.does useEffect runs after the jsx or before
+
+22.what is behaviour of useState when we set the state value to same value 
+
+23.if we have a memoized function inside the child component inside suspense, will it re-render again once promise is resolved or will it give back the memoized value
+
+24.what is the seq of running order of app sync code, jsx, useEffect, promise and setTimeout
+
+25.order of useEffect, useLayoutEffect, useIntesertionEffect 
+
+26.if the main app and child component both have useEffect, then does the main app comp runs first or the child comp useEffect
+
+27.order of exectuion of sync code, promise, setTimeout and useEffect

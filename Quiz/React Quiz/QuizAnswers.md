@@ -16,7 +16,7 @@ EVEN IF THERE WAS NO SUSPENSE , throwing a promise would have halted the executi
 10.useEffect is aysnc or deferred meaning it doesnt block the dom, it calculates the dom changes in the background and udpates the dom after the dom paint but useLayout effect is sync meaning it runs synchronously immediately after the DOM mutations, but before the browser paints. 
  useEffect will run the changes after the dom is rendered meaning a position set of an element in useEffect will first show at inital positon and then at set place , but using useLayout effect , the element shows directly at the set place first because useLayout runs before the dom is painted
 
- clean up functions run just before second re-render, if no re-render then no clean up function will run 
+ clean up functions run just before second re-render, if no re-render then no clean up function will run or you can say if no unmount then no clean up function will run
 
  11.the comparison fails because Because JavaScript functions are objects, a function defined inline during a render is a new object reference every time. The memoization check performs a shallow comparison: prevProps.onClick !== nextProps.onClick is true because the references are different, the fix for this is wrapping the function inside useCallback so that its refernece doesnt change with rerender if deps have not changed
 
@@ -28,3 +28,19 @@ EVEN IF THERE WAS NO SUSPENSE , throwing a promise would have halted the executi
  15.yes , In React, the children prop is created as a new object reference (React Element) on every single render of the parent component (App), so even if memoized the component will re-render
 
  17.so react batch updates multiple states meaning if we have a function that is doing two state updates like increasing count and toggling to false, ideally react should render the component twice for each state change, but this is not done by react, it renders the component only once for two state changes done back to back ,this is batch update but when we use flush sync and put the state function inside it, for that state change the component is immediately rendered and then the following state function outside the flush sync renders the comp again
+
+
+ 21.useEffect runs after the dom is painted not before and clean up runs only if the component unmounts
+
+ 22.react will bypass rendering if the prev state value and current state value is same
+
+ 23.A memoized value is only saved and returned if it was computed in a render cycle that was successfully committed to the DOM. Since the initial render containing the suspended component was aborted, none of its memoized results were committed or saved for future use and so on re-render a brand new component is again initialised so useMemo runs again and also React re-renders once the promsie is resolved , it doesnt keep checking
+
+ 24.seq of code execution is first app sync code, then jsx committed, then useEffect runs, then Micro task queue executed then macro task queue executed
+
+ 25.first app loads, all the sync code runs, then useInsertionEffect runs first , then useLayoutEffect and then useEffect, if app re-renders then again all sync code runs first then clean up function of useInsertionEffect and immediately after that again body of useInsertionEffect if deps is changing , after same with useLayoutEffect, clean up function and then body if deps changing and then useEffect in order, clean up first of all and then the body if deps changing , ** NOTE- clean up function will not run if deps is not **changing
+
+
+ 26.main app sync code runs, then child comp sync code and useEffect runs and then parent comp useEffect runs from top to bottom , if state changes then re-render will cause the sync code of parent to run fist then first clean up of child comp and clean up of parent comp from top to bottom then body of child comp and then body of parent comp useEffect whose deps have changed
+
+ 27.the order of execution of code is  sync code, promise, setTimeout and useEffect
