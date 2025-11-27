@@ -1,0 +1,4 @@
+1.whenever you want a value from range 0 to below that value,say 0 - 11 then we use , Math.floor(Math.random() * n ), so it will give us random values from 0 to n-1 and Math.ceil if you want values from 1 - n because getting 0.000 is possible but rare
+
+2. showing random emoji on a particular cell - we are getting two random values in an array through the logic of math.random so let molePos = [randomValue1,randomValue2] , now when we are rendering the cell, we check if the row of cell is equal to randomValue1 and col of cell is equal to randomValue2, if yes then show the mole
+this will change each time our component is mounting 
