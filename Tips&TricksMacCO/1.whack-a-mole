@@ -1,4 +1,16 @@
-1.whenever you want a value from range 0 to below that value,say 0 - 11 then we use , Math.floor(Math.random() * n ), so it will give us random values from 0 to n-1 and Math.ceil if you want values from 1 - n because getting 0.000 is possible but rare
+1. build a n*n grid - take Array.from({length:n}).map((item,row)=>return (Array.from({length:n}).map((item,col))))
 
-2. showing random emoji on a particular cell - we are getting two random values in an array through the logic of math.random so let molePos = [randomValue1,randomValue2] , now when we are rendering the cell, we check if the row of cell is equal to randomValue1 and col of cell is equal to randomValue2, if yes then show the mole
+2. showing emoji on a random cell on each mount - 
+we can use something like [molePos,setMolePos] = useState(generateMolePos(size))
+we are getting two random values in an array through the logic of math.random so  return [randomValue1,randomValue2] 
+now when we are rendering the cell, we check if the row of cell is equal to randomValue1 and col of cell is equal to randomValue2, if yes then show the mole
 this will change each time our component is mounting 
+
+3. showing the emoji in each cell for a particular time -  to do this same thing in a set of interval we put setMolePos(generateMolePos(size)) in a setInterval with 100ms of delay
+
+4. showing a hammer for 200ms when clicking on any cell - as cell is basically one box of the grid, each cell has row and col, so on clicking on any cell, we are throttling hammerFlag, and to make it disappear , we have put a setTimeout just have setHammerFlag where we are again throttling it to false
+
+5. contact between emoji and hammer for score - setHammer to true when clicking the cell but do the same condition of checking if row of the cell is === to molePos[0] & col === molePos[1] , if yes then only increase the score and also again change mole pos so that it emoji changes the position the moment we click on it and then throttle it to false outside the condition
+
+Notes -
+/** whenever you want a value from range 0 to below that value,say 0 - 11 then we use , Math.floor(Math.random() * n ), so it will give us random values from 0 to n-1 and Math.ceil if you want values from 1 - n because getting 0.000 is possible but rare **/
