@@ -7,7 +7,7 @@ export default function FileExplorerComponent({ data }: FileExplorerPropsType) {
   return (
     <div>
       <div>
-        <span>{data.type === "folder" ? "🗂️" : "📁"}</span>
+        <span>{data.type === "folder" ? "🗂️ " : "📁 "}</span>
         <span>{data.name}</span>
       </div>
       <div style={{ paddingLeft: "20px" }}>
