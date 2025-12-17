@@ -1,4 +1,4 @@
-1. build a n*n grid - take Array.from({length:n}).map((item,row)=>return (Array.from({length:n}).map((item,col))))
+1. build a n*n grid - take Array.from({length:n}).map((item,row)=>return (Array.from({length:n}).map((item,col))=> return <Cell />))
 
 2. showing emoji on a random cell on each mount - 
 we can use something like [molePos,setMolePos] = useState(generateMolePos(size))
