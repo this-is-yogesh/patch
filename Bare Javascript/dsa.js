@@ -1,20 +1,41 @@
 /**
+You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two adjacent and equal letters and removing them.
+
+We repeatedly make duplicate removals on s until we no longer can.
+
+Return the final string after all such duplicate removals have been made. It can be proven that the answer is unique.
+
+ 
+
 Example 1:
 
-Input: x = 4
-Output: 2
-Explanation: The square root of 4 is 2, so we return 2.
+Input: s = "abbaca"
+Output: "ca"
+Explanation: 
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
 Example 2:
 
-Input: x = 8
-Output: 2
-Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
- **/
+Input: s = "azxxzy"
+Output: "ay"
 
+ */
 
-var mySqrt = function (x) {
+var removeDuplicates = function (s) {
+  let stack = new Array();
+  let i = 0;
 
+  while (i < s.length) {
+    if (!stack.length) {
+      stack.push(s[i]);
+    } else if (stack[stack.length - 1] === s[i]) {
+      stack.pop();
+    } else {
+      stack.push(s[i]);
+    }
+    i++;
+  }
 
+  return stack.join("");
 };
 
-mySqrt(4)
+console.log(removeDuplicates("azxxzy"),'ans');
