@@ -17,6 +17,7 @@
 }
 .child_body {
   width: 90%;
+  position: relative;
 }
 .child_description {
   border-radius: 2%;
@@ -25,8 +26,14 @@
   margin: 10px;
   padding: 10px;
   cursor: grab;
+  position: relative;
+  padding-left: 30px;
 }
-
+.shuffle_button {
+  position: absolute;
+  left: 5px;
+  cursor: pointer;
+}
 h3 {
   text-align: left;
   width: 80%;

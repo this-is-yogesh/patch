@@ -17,11 +17,11 @@ function ListComponent({ data, setInitialData }) {
   }
 
   function onDrop(e, data) {
-
     const dataDropped = JSON.parse(e.dataTransfer.getData("application/json"));
     let targetKey = data[0];
     let parentKey = dataDropped.name;
     let parentDesc = dataDropped.desc;
+    if (targetKey === parentKey) return;
     setInitialData(prev => ({
       ...prev,
       [parentKey]: prev[parentKey].filter(data => data !== parentDesc),
@@ -49,13 +49,15 @@ function ListComponent({ data, setInitialData }) {
       <h3>{data[0]}</h3>
       <div className="child_body">
         {data[1].map((desc, index) => (
-          <div
-            className="child_description"
-            key={data[0] + index}
-            draggable
-            onDragStart={e => onDragStartFunction(e, desc)}
-          >
-            {desc}
+          <div key={index + desc}>
+            <div
+              className="child_description"
+              key={data[0] + index}
+              draggable
+              onDragStart={e => onDragStartFunction(e, desc)}
+            >
+              <div>{desc}</div>
+            </div>
           </div>
         ))}
       </div>
