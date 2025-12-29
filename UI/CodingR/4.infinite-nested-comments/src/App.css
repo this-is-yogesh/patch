@@ -1,0 +1,45 @@
+.main_nested_comment {
+  width: 100%;
+}
+.individual_comment {
+  border-left: 1px solid black;
+}
+
+.desc_and_buttons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px;
+}
+
+.desc_span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.desc_and_buttons button {
+  border: none;
+  background-color: transparent;
+  color: blue;
+  font-size: 15px;
+  cursor: pointer;
+}
+.main_nested_comment textarea {
+  display: block;
+  width: 500px;
+  margin: 10px 5px;
+}
+.post_reply_div textarea {
+  height: 50px;
+  padding: 5px;
+  outline: none;
+}
+.post_reply_button {
+  background-color: rgb(3, 3, 114);
+  color: white;
+  border: 1px solid black;
+  margin: 5px 10px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5%;
+  cursor: pointer;
+}
