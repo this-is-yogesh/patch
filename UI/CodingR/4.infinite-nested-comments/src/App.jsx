@@ -10,7 +10,7 @@ function App() {
       .then(data => data.json())
       .then(data => setData(data));
   }, []);
-  return <>{data?.length && <NestedComment data={data} />}</>;
+  return <>{data?.length && <NestedComment data={data} setData={setData} />}</>;
 }
 
 export default App;

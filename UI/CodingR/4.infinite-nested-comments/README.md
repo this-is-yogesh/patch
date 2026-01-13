@@ -1,16 +1,59 @@
-# React + Vite
+1. how to delete the post of the main data
+ -  function deleteReply(data, id) {
+    return data
+      .filter(data => data.id !== id)
+      .map(item => {
+        return {
+          ...item,
+          children: item?.children ? deleteReply(item.children, id) : [],
+        };
+      });
+  }
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  2. how to add a reply to the main data
+   -  function addReply(data, id, replyBody) {
+    return data.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          children: [replyBody, ...item.children],
+        };
+      }
+      return {
+        ...item,
+        children: item.children ? addReply(item.children, id, replyBody) : [],
+      };
+    });
+  }
 
-Currently, two official plugins are available:
+  3. There are several comments , explain the structure
+  - all the comments are individual components meaning everyone of them have their own state variable , it is like this because we are using the parent component NestedComment recursively so each component is indpendent
+  i verified it by putting       style={{
+        backgroundColor: `#${
+          Math.floor(Math.random() * 10).toString() +
+          Math.floor(Math.random() * 10).toString() +
+          Math.floor(Math.random() * 10).toString()
+        }`,
+      }} 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+4. what is the logic of edit reply function
+- we are basically mapping over the entire data and if the id the selected comment to edit matches with any object in our entire data then we just replace its desc with the current reply and if not means the selected comment must be one of the current item children , then we just return the item and we replace its children into further loop
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+  function editEntireBody(data, id, replyBody) {
+    return data.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          desc: replyBody,
+        };
+      }
+      return {
+        ...item,
+        children:
+          item?.children?.length > 0
+            ? editEntireBody(item.children, id, replyBody)
+            : [],
+      };
+    });
+  }

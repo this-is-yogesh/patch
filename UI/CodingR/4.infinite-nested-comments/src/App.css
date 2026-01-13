@@ -2,7 +2,7 @@
   width: 100%;
 }
 .individual_comment {
-  border-left: 1px solid black;
+  /* border-left: 1px solid black; */
 }
 
 .desc_and_buttons {
@@ -43,3 +43,12 @@
   border-radius: 5%;
   cursor: pointer;
 }
+
+/* .buttons_div {
+  opacity: 0;
+}
+
+.individual_comment:hover .buttons_div {
+  opacity: 1;
+  background-color: red;
+} */
